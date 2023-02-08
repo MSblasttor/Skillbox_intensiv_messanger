@@ -10,12 +10,10 @@ def load_info(db_name):
         db_info = json.load(db)
     return db_info['messages']
 
-
 def save_info(db_info, db_name):
     data = {'messages': db_info}
     with open(db_name, 'w') as json_file:
         json.dump(data, json_file)
-
 
 app = Flask(__name__)
 
