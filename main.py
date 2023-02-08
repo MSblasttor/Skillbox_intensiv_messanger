@@ -45,6 +45,15 @@ def send_message():
     all_messages.append(text_info)
     save_info(all_messages, db_name)
 
+@app.route('/status')
+def get_status():
+    members = []
+    members_and_message = load_info(db_name)
+    count_message = str(len(members_and_message))
+    for member in members_and_message:
+        members.append(member.get('sender'))
+    unique_member = str(len(list(set(members))))
+    return "Unique member count: " + unique_member + " All messages in chat: " + count_message
 
 
 app.run(host='0.0.0.0', port=5050)
